@@ -10,38 +10,46 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    let quizzes = ["Mathematics", "Marvel Super Heroes", "Science"]
-    
-    @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: nil, message: "Settings go here", preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let OKAction = UIAlertAction(title: "OK", style: .default) { action in
-            // ...
-        }
-        alertController.addAction(OKAction)
-        
-        self.present(alertController, animated: true)
+    struct Subject {
+        let name: String
+        let image: UIImage
+        let description: String
     }
+    
+    let subjects: [Subject] = [
+        Subject(name: "Mathematics", image: #imageLiteral(resourceName: "math"), description: "1 + 1 = 2"),
+        Subject(name: "Marvel Super Heroes", image: #imageLiteral(resourceName: "marvel"), description: "There aren't enough movies!"),
+        Subject(name: "Science", image: #imageLiteral(resourceName: "science"), description: "f = ma")
+    ]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quizzes.count
+        return subjects.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell?.textLabel?.text = quizzes[indexPath.row]
+        cell.textLabel?.text = subjects[indexPath.row].name
+        cell.detailTextLabel?.text = subjects[indexPath.row].description
+        cell.imageView?.image = subjects[indexPath.row].image
         
-        return cell!
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
+    }
+    
+    @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: nil, message: "Settings go here", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let OKAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true)
     }
     
     override func viewDidLoad() {
