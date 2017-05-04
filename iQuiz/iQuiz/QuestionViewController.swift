@@ -9,18 +9,13 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
-
-    struct Question {
-        let text: String
-        let answer: Int
-        let answers: [String]
-    }
     
     var questions: [String] = [""]
     var options: [[String]] = [[""]]
-    var answers: [Int] = []
+    var answers: [String] = [""]
     var questionIndex: Int = 0
     var correct = 0
+    var selectedAnswer = ""
     
     @IBOutlet weak var a1: UIButton!
     @IBOutlet weak var a2: UIButton!
@@ -42,6 +37,7 @@ class QuestionViewController: UIViewController {
 
     @IBAction func answerClicked(_ sender: UIButton) {
         // if sender.text is the same as options[answers[questionIndex]] then increase num correct
+        selectedAnswer = sender.currentTitle!
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,9 +48,17 @@ class QuestionViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // modifying questionIndex, passing correct answer 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier != "BackSegue") {
+            let vc = segue.destination as! AnswerViewController
+            vc.questions = questions
+            vc.options = options
+            vc.answers = answers
+            vc.questionIndex = questionIndex
+            vc.correct = correct
+            vc.selectedAnswer = selectedAnswer
+        }
     }
     
 

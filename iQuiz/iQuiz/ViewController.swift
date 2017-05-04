@@ -47,7 +47,7 @@ class ViewController: UITableViewController {
          "Nobody knows"]
     ]
     
-    let answers = [1, 1, 2, 1, 1]
+    let answers = ["1", "1", "2", "1", "1"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
