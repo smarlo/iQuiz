@@ -198,15 +198,21 @@
                                     <action selector="nextClicked:" destination="wiW-a0-tx5" eventType="touchUpInside" id="hIw-NV-1JH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcJ-fg-8PM">
-                                <rect key="frame" x="16" y="20" width="343" height="300"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcJ-fg-8PM">
+                                <rect key="frame" x="16" y="20" width="343" height="200"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLe-2u-LDP">
+                                <rect key="frame" x="-0.5" y="521" width="375" height="100"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEz-zb-Xdb">
-                                <rect key="frame" x="-0.5" y="320" width="375" height="301"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEz-zb-Xdb">
+                                <rect key="frame" x="0.0" y="220" width="375" height="301"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -217,18 +223,23 @@
                             <constraint firstItem="NEz-zb-Xdb" firstAttribute="top" secondItem="NcJ-fg-8PM" secondAttribute="bottom" id="8yM-eP-eJy"/>
                             <constraint firstItem="gi1-yi-9Ea" firstAttribute="leading" secondItem="a8b-hc-9uV" secondAttribute="leadingMargin" id="E1T-6G-HNI"/>
                             <constraint firstItem="NEz-zb-Xdb" firstAttribute="height" secondItem="a8b-hc-9uV" secondAttribute="height" multiplier="9/20" id="Gvc-Hi-Ce8"/>
-                            <constraint firstItem="NcJ-fg-8PM" firstAttribute="height" secondItem="a8b-hc-9uV" secondAttribute="height" multiplier="9/20" id="PId-as-hUq"/>
+                            <constraint firstItem="NLe-2u-LDP" firstAttribute="height" secondItem="a8b-hc-9uV" secondAttribute="height" multiplier="3/20" id="KcM-lr-bYL"/>
+                            <constraint firstItem="NcJ-fg-8PM" firstAttribute="height" secondItem="a8b-hc-9uV" secondAttribute="height" multiplier="6/20" id="PId-as-hUq"/>
+                            <constraint firstItem="gi1-yi-9Ea" firstAttribute="top" secondItem="NLe-2u-LDP" secondAttribute="bottom" id="Plg-Tk-vdL"/>
+                            <constraint firstItem="NLe-2u-LDP" firstAttribute="top" secondItem="NEz-zb-Xdb" secondAttribute="bottom" id="WO7-ze-8b4"/>
+                            <constraint firstItem="NLe-2u-LDP" firstAttribute="width" secondItem="a8b-hc-9uV" secondAttribute="width" id="WZh-rt-16e"/>
                             <constraint firstItem="NEz-zb-Xdb" firstAttribute="width" secondItem="a8b-hc-9uV" secondAttribute="width" id="a2z-fy-XZy"/>
                             <constraint firstItem="NEz-zb-Xdb" firstAttribute="centerX" secondItem="gi1-yi-9Ea" secondAttribute="centerX" id="c0K-gW-BIu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NcJ-fg-8PM" secondAttribute="trailing" id="cdH-3Z-iat"/>
-                            <constraint firstItem="gi1-yi-9Ea" firstAttribute="top" secondItem="NEz-zb-Xdb" secondAttribute="bottom" id="fdh-QW-zg3"/>
                             <constraint firstItem="eqR-ha-rct" firstAttribute="top" secondItem="gi1-yi-9Ea" secondAttribute="bottom" id="gyx-Aq-Meg"/>
+                            <constraint firstItem="NLe-2u-LDP" firstAttribute="centerX" secondItem="gi1-yi-9Ea" secondAttribute="centerX" id="nvm-AH-is1"/>
                             <constraint firstItem="NcJ-fg-8PM" firstAttribute="leading" secondItem="a8b-hc-9uV" secondAttribute="leadingMargin" id="pzU-fU-6oM"/>
                             <constraint firstItem="NcJ-fg-8PM" firstAttribute="top" secondItem="i7O-4u-Hbn" secondAttribute="bottom" id="rD4-Zl-iIL"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="answerLabel" destination="NEz-zb-Xdb" id="tF1-Lf-6Bf"/>
+                        <outlet property="correctLabel" destination="NLe-2u-LDP" id="GAd-mp-Tad"/>
                         <outlet property="questionLabel" destination="NcJ-fg-8PM" id="xQl-KX-tQL"/>
                         <segue destination="p1k-hj-hUo" kind="presentation" identifier="FinishedSegue" id="7as-Ri-bP2"/>
                         <segue destination="Zzu-bA-VgW" kind="presentation" identifier="QuestionSegue" id="feu-Nh-cBg"/>
@@ -250,29 +261,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Finished! " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZw-aG-F41">
-                                <rect key="frame" x="0.0" y="12" width="375" height="647"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Finished! " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZw-aG-F41">
+                                <rect key="frame" x="0.0" y="20" width="375" height="581"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2g-Gx-qTY">
+                                <rect key="frame" x="0.0" y="601" width="375" height="67"/>
+                                <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="6QC-uf-lvx"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Back to Quizzes">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextClicked:" destination="wiW-a0-tx5" eventType="touchUpInside" id="NZO-i6-AVi"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="lxw-vp-hNr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="oZw-aG-F41" secondAttribute="trailing" id="0IY-Ul-meR"/>
-                            <constraint firstItem="oZw-aG-F41" firstAttribute="leading" secondItem="6uJ-aJ-h3Z" secondAttribute="leading" id="6Bp-ej-sfg"/>
-                            <constraint firstItem="oZw-aG-F41" firstAttribute="top" secondItem="6uJ-aJ-h3Z" secondAttribute="topMargin" constant="12" id="MPU-9Q-8mf"/>
-                            <constraint firstItem="Iaq-1i-h8D" firstAttribute="top" secondItem="oZw-aG-F41" secondAttribute="bottom" constant="8" symbolic="YES" id="xyL-DY-bQ5"/>
+                            <constraint firstItem="oZw-aG-F41" firstAttribute="centerX" secondItem="Z2g-Gx-qTY" secondAttribute="centerX" id="DsD-2m-PG7"/>
+                            <constraint firstItem="oZw-aG-F41" firstAttribute="leading" secondItem="6uJ-aJ-h3Z" secondAttribute="leading" id="NDV-zf-T2O"/>
+                            <constraint firstItem="Z2g-Gx-qTY" firstAttribute="top" secondItem="oZw-aG-F41" secondAttribute="bottom" id="SCq-H3-dGJ"/>
+                            <constraint firstItem="oZw-aG-F41" firstAttribute="top" secondItem="3TY-ZU-AcQ" secondAttribute="bottom" id="XfZ-a6-2yf"/>
+                            <constraint firstAttribute="trailing" secondItem="oZw-aG-F41" secondAttribute="trailing" id="cqF-bl-rK9"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Z2g-Gx-qTY" secondAttribute="bottom" constant="-1" id="hs5-bO-6mD"/>
+                            <constraint firstItem="Z2g-Gx-qTY" firstAttribute="width" secondItem="6uJ-aJ-h3Z" secondAttribute="width" id="ufD-aA-geT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="finalScoreLabel" destination="oZw-aG-F41" id="OFv-66-0Eg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="haY-Ve-aUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2047" y="121"/>
+            <point key="canvasLocation" x="2045.5999999999999" y="120.98950524737631"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="MQQ-DF-o5f"/>
         <segue reference="feu-Nh-cBg"/>
+        <segue reference="lxw-vp-hNr"/>
     </inferredMetricsTieBreakers>
 </document>

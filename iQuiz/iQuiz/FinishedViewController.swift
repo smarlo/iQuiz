@@ -9,11 +9,15 @@
 import UIKit
 
 class FinishedViewController: UIViewController {
-
+    var correct = 0
+    var total = 0
+    
+    @IBOutlet weak var finalScoreLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        finalScoreLabel.text = "You finished! \n You got \(correct) out of \(total) correct!"
     }
 
     override func didReceiveMemoryWarning() {

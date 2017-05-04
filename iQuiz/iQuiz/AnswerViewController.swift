@@ -18,24 +18,25 @@ class AnswerViewController: UIViewController {
     
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var correctLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let correctIndex = Int(answers[questionIndex])! - 1
         let currentOptions = options[questionIndex]
-        questionLabel.text = questions[questionIndex]
-        answerLabel.text = currentOptions[correctIndex]
+        questionLabel.text = "Question: \n \(questions[questionIndex])"
+        answerLabel.text = "Answer: \n \(currentOptions[correctIndex])"
         
         if currentOptions[correctIndex] == selectedAnswer {
-            print("You answered correct!")
+            correctLabel.text = "You answered correct :)"
             correct += 1
+        } else {
+            correctLabel.text = "You answered incorrect :("
         }
         // Do any additional setup after loading the view.
     }
 
     @IBAction func nextClicked(_ sender: UIButton) {
-        // if last question questionIndex >= questions.size - 1 , go back to finished scene 
-        // otherwise, go back to question scene 
         if questionIndex < questions.count - 1 {
             questionIndex += 1
             performSegue(withIdentifier: "QuestionSegue", sender: self)
@@ -52,15 +53,15 @@ class AnswerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FinishedSegue") {
            let fvc = segue.destination as! FinishedViewController
-//            fvc.correctCount = correctCount
-//            controller.numQuestions = questions.count
+            fvc.correct = correct
+            fvc.total = questions.count
         } else {
             let qvc = segue.destination as! QuestionViewController
             qvc.questions = questions
             qvc.options = options
             qvc.answers = answers
             qvc.questionIndex = questionIndex
-            //controller.correctCount = correctCount
+            qvc.correct = correct
         }
     }
 
