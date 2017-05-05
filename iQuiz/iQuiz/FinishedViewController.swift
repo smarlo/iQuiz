@@ -16,7 +16,18 @@ class FinishedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        finalScoreLabel.text = "You finished! \n You got \(correct) out of \(total) correct!"
+        let score = Float(correct / total)
+        var description = "You finished"
+        if score == 1 {
+            description = "Perfect!"
+        } else if score >= 0.8 {
+            description = "Almost!"
+        } else if score > 0.6 {
+            description = "Good Job!"
+        } else {
+            description = "Good Try!"
+        }
+        finalScoreLabel.text = "\(description) \n You got \(correct) out of \(total) correct!"
     }
 
     override func didReceiveMemoryWarning() {
