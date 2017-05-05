@@ -16,6 +16,7 @@ class QuestionViewController: UIViewController {
     var questionIndex: Int = 0
     var correct = 0
     var selectedAnswer = ""
+    var answerButtons: [UIButton] = []
     
     @IBOutlet weak var a1: UIButton!
     @IBOutlet weak var a2: UIButton!
@@ -25,16 +26,18 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var answerButtons = [a1, a2, a3, a4]
+        answerButtons = [a1, a2, a3, a4]
         questionLabel.text = questions[questionIndex]
         for i in 0...3 {
-            answerButtons[i]?.setTitle(options[questionIndex][i], for: UIControlState.normal)
+            answerButtons[i].setTitle(options[questionIndex][i], for: UIControlState.normal)
+            
         }
     }
 
     @IBAction func answerClicked(_ sender: UIButton) {
         selectedAnswer = sender.currentTitle!
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,7 +46,7 @@ class QuestionViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    // modifying questionIndex, passing correct answer 
+    // modifying questionIndex, passing correct answer
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier != "BackSegue") {
             let vc = segue.destination as! AnswerViewController
