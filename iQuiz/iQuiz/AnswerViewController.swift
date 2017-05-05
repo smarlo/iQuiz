@@ -52,7 +52,7 @@ class AnswerViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FinishedSegue") {
-           let fvc = segue.destination as! FinishedViewController
+            let fvc = segue.destination as! FinishedViewController
             fvc.correct = correct
             fvc.total = questions.count
         } else {

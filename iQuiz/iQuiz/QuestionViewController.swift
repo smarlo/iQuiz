@@ -21,29 +21,24 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var a2: UIButton!
     @IBOutlet weak var a3: UIButton!
     @IBOutlet weak var a4: UIButton!
-
     @IBOutlet weak var questionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         var answerButtons = [a1, a2, a3, a4]
-        
         questionLabel.text = questions[questionIndex]
-        
         for i in 0...3 {
             answerButtons[i]?.setTitle(options[questionIndex][i], for: UIControlState.normal)
         }
     }
 
     @IBAction func answerClicked(_ sender: UIButton) {
-        // if sender.text is the same as options[answers[questionIndex]] then increase num correct
         selectedAnswer = sender.currentTitle!
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
     // MARK: - Navigation
 
