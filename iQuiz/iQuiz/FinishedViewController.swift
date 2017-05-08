@@ -16,13 +16,14 @@ class FinishedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let score = Float(correct / total)
+        let score = Double(correct) / Double(total)
+        print(score)
         var description = "You finished"
         if score == 1 {
             description = "Perfect!"
         } else if score >= 0.8 {
             description = "Almost!"
-        } else if score > 0.6 {
+        } else if score < 0.8 && score >= 0.6 {
             description = "Good Job!"
         } else {
             description = "Good Try!"
