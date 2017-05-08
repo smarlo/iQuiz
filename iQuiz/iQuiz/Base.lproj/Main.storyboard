@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gi1-yi-9Ea">
-                                <rect key="frame" x="234" y="600" width="125" height="67"/>
+                                <rect key="frame" x="265" y="600" width="94" height="67"/>
                                 <color key="tintColor" red="0.0" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" red="0.0" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -231,13 +231,26 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c54-Jz-hgV">
+                                <rect key="frame" x="171" y="600" width="94" height="67"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.0" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="m4J-48-qNa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gi1-yi-9Ea" firstAttribute="width" secondItem="a8b-hc-9uV" secondAttribute="width" multiplier="1/3" id="06h-Mq-4mX"/>
+                            <constraint firstItem="gi1-yi-9Ea" firstAttribute="width" secondItem="a8b-hc-9uV" secondAttribute="width" multiplier="1/4" id="06h-Mq-4mX"/>
                             <constraint firstAttribute="trailing" secondItem="NLe-2u-LDP" secondAttribute="trailing" id="2GR-t7-1K6"/>
                             <constraint firstItem="eqR-ha-rct" firstAttribute="top" secondItem="gi1-yi-9Ea" secondAttribute="bottom" id="476-to-qMH"/>
+                            <constraint firstItem="gi1-yi-9Ea" firstAttribute="leading" secondItem="c54-Jz-hgV" secondAttribute="trailing" id="47s-p3-JDz"/>
+                            <constraint firstItem="c54-Jz-hgV" firstAttribute="baseline" secondItem="gi1-yi-9Ea" secondAttribute="baseline" id="4AN-hp-Oad"/>
                             <constraint firstItem="NcJ-fg-8PM" firstAttribute="top" secondItem="i7O-4u-Hbn" secondAttribute="bottom" id="4bq-uE-Z1A"/>
+                            <constraint firstItem="c54-Jz-hgV" firstAttribute="height" secondItem="a8b-hc-9uV" secondAttribute="height" multiplier="1/10" id="50M-jI-FPs"/>
+                            <constraint firstItem="c54-Jz-hgV" firstAttribute="width" secondItem="a8b-hc-9uV" secondAttribute="width" multiplier="1/4" id="6RT-HE-p4q"/>
                             <constraint firstItem="gi1-yi-9Ea" firstAttribute="trailing" secondItem="a8b-hc-9uV" secondAttribute="trailingMargin" id="9mE-bf-dH8"/>
                             <constraint firstItem="NEz-zb-Xdb" firstAttribute="top" secondItem="NcJ-fg-8PM" secondAttribute="bottom" id="9pm-aj-w5v"/>
                             <constraint firstItem="NcJ-fg-8PM" firstAttribute="height" secondItem="a8b-hc-9uV" secondAttribute="height" multiplier="2/10" id="BLS-by-Djx"/>
@@ -317,7 +330,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="m4J-48-qNa"/>
         <segue reference="feu-Nh-cBg"/>
-        <segue reference="lxw-vp-hNr"/>
     </inferredMetricsTieBreakers>
 </document>
