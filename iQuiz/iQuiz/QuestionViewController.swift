@@ -9,10 +9,11 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
+
+    var questions = [String: [(String, String)]]()
+    var answers = [String: [[String]]]()
+    var subject = ""
     
-    var questions: [String] = [""]
-    var options: [[String]] = [[""]]
-    var answers: [String] = [""]
     var questionIndex: Int = 0
     var correct = 0
     var selectedAnswer = ""
@@ -27,10 +28,9 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         answerButtons = [a1, a2, a3, a4]
-        questionLabel.text = questions[questionIndex]
+        questionLabel.text = questions[subject]?[questionIndex].0
         for i in 0...3 {
-            answerButtons[i].setTitle(options[questionIndex][i], for: UIControlState.normal)
-            
+            answerButtons[i].setTitle(answers[subject]?[questionIndex][i], for: UIControlState.normal)
         }
     }
 
@@ -50,9 +50,9 @@ class QuestionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier != "BackSegue") {
             let vc = segue.destination as! AnswerViewController
-            vc.questions = questions
-            vc.options = options
-            vc.answers = answers
+//            vc.questions = questions
+//            vc.options = options
+//            vc.answers = answers
             vc.questionIndex = questionIndex
             vc.correct = correct
             vc.selectedAnswer = selectedAnswer

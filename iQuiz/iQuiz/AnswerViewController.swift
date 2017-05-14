@@ -57,9 +57,9 @@ class AnswerViewController: UIViewController {
             fvc.total = questions.count
         } else {
             let qvc = segue.destination as! QuestionViewController
-            qvc.questions = questions
-            qvc.options = options
-            qvc.answers = answers
+//            qvc.questions = questions
+//            qvc.options = options
+//            qvc.answers = answers
             qvc.questionIndex = questionIndex
             qvc.correct = correct
         }

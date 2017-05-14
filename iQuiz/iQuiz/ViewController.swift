@@ -10,44 +10,54 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    struct Subject {
-        let name: String
-        let image: UIImage
-        let description: String
+    var loaded: Bool = false
+    let url = "http://tednewardsandbox.site44.com/questions.json"
+    
+    var subjects: [String] = []
+    var descriptions: [String] = []
+    let icons: [UIImage] = [#imageLiteral(resourceName: "science"), #imageLiteral(resourceName: "marvel"), #imageLiteral(resourceName: "math")]
+    var questions = [String: [(String, String)]]()
+    var answers = [String: [[String]]]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getQuizzes()
+        // Do any additional setup after loading the view, typically from a nib.
     }
     
-    let subjects: [Subject] = [
-        Subject(name: "Mathematics", image: #imageLiteral(resourceName: "math"), description: "1 + 1 = 2"),
-        Subject(name: "Marvel Super Heroes", image: #imageLiteral(resourceName: "marvel"), description: "There aren't enough movies!"),
-        Subject(name: "Science", image: #imageLiteral(resourceName: "science"), description: "f = ma")
-    ]
-    
-    let questions = ["What is fire?", "Who is Iron Man?", "Who founded the x-men?", "How did Spider-Man get his powers?", "What is 2 + 2?"]
-    
-    let options = [
-        ["One of the four classical elements",
-         "A magical reaction given to us by God",
-         "A band that hasn't yet been discovered",
-         "Fire! Fire! Fire! heh-heh"],
-        ["Tony Stark",
-         "Obadiah Stane",
-         "A rock hit by Megadeth",
-         "Nobody knows"],
-        ["Tony Stark",
-         "Professor X",
-         "The X-Institute",
-         "Erik Lensherr"],
-        ["He was bitten by a radioactive spider",
-         "He ate a radioactive spider",
-         "He is a radioactive spider",
-         "He looked at a radioactive spider"],
-        ["4",
-         "22",
-         "An irrational number",
-         "Nobody knows"]
-    ]
-    
-    let answers = ["1", "1", "2", "1", "1"]
+    func getQuizzes() {
+        let urlString: URL = URL(string: url)!
+        URLSession.shared.dataTask(with: urlString) { (data, response, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String:Any]]
+                    for section in json {
+                        let title = section["title"]! as! String
+                        if let subjectQuestions = section["questions"] as? [[String:Any]] {
+                            var quest: [(String,String)] = []
+                            var ans: [[String]] = []
+                            for val in subjectQuestions {
+                                var array = val["answers"]! as! [String]
+                                let answerIndex = Int(val["answer"]! as! String)! - 1
+                                quest.append((val["text"]! as! String, array[answerIndex]))
+                                ans.append(array)
+                            }
+                            self.questions[title] = quest
+                            self.answers[title] = ans
+                        }
+                        self.subjects.append(title)
+                        self.descriptions.append(section["desc"]! as! String)
+                    }
+                    self.loaded = true
+                    self.tableView.reloadData()
+                } catch {
+                    print("error serializing JSON \(error)")
+                }
+            }
+            }.resume()
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -61,10 +71,12 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = subjects[indexPath.row].name
-        cell.detailTextLabel?.text = subjects[indexPath.row].description
-        cell.imageView?.image = subjects[indexPath.row].image
-        
+        if self.loaded {
+            cell.textLabel?.text = subjects[indexPath.row]
+            cell.detailTextLabel?.text = descriptions[indexPath.row]
+            cell.imageView?.image = icons[indexPath.row]
+        }
+    
         return cell
     }
     
@@ -81,16 +93,15 @@ class ViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! QuestionViewController
+        let selected = self.tableView.indexPathForSelectedRow!
+        let subject = subjects[selected[1]]
+        vc.subject = subject 
         vc.questions = questions
-        vc.options = options
-        vc.answers = answers
+        vc.answers = answers 
+//        vc.questions = questions
+//        vc.options = options
+//        vc.answers = answers
         vc.questionIndex = 0
-    }
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
