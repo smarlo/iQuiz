@@ -50,12 +50,14 @@ class QuestionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier != "BackSegue") {
             let vc = segue.destination as! AnswerViewController
-//            vc.questions = questions
-//            vc.options = options
-//            vc.answers = answers
+            vc.questions = questions
+            vc.subject = subject 
+            vc.answers = answers
             vc.questionIndex = questionIndex
             vc.correct = correct
             vc.selectedAnswer = selectedAnswer
+            vc.correctAnswer = (questions[subject]?[questionIndex].1)!
+            vc.currentQuestion = (questions[subject]?[questionIndex].0)!
         }
     }
     
