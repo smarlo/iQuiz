@@ -38,7 +38,7 @@ class AnswerViewController: UIViewController {
     }
 
     @IBAction func nextClicked(_ sender: UIButton) {
-        if questionIndex < questions.count - 1 {
+        if questionIndex < (questions[subject]?.count)! - 1 {
             questionIndex += 1
             performSegue(withIdentifier: "QuestionSegue", sender: self)
         } else {
@@ -50,12 +50,11 @@ class AnswerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "FinishedSegue") {
             let fvc = segue.destination as! FinishedViewController
             fvc.correct = correct
-            fvc.total = questions.count
+            fvc.total = (questions[subject]?.count)!
         } else {
             let qvc = segue.destination as! QuestionViewController
             qvc.questions = questions

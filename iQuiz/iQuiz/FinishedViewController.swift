@@ -17,7 +17,6 @@ class FinishedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let score = Double(correct) / Double(total)
-        print(score)
         var description = "You finished"
         if score == 1 {
             description = "Perfect!"
