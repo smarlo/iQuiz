@@ -58,7 +58,7 @@ class QuestionViewController: UIViewController {
             vc.selectedAnswer = selectedAnswer
             vc.correctAnswer = (questions[subject]?[questionIndex].1)!
             vc.currentQuestion = (questions[subject]?[questionIndex].0)!
-        }
+        } 
     }
     
 

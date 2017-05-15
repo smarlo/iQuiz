@@ -237,7 +237,7 @@
                                     <color key="titleColor" red="0.0" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="m4J-48-qNa"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="BackSegue" id="m4J-48-qNa"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -55,7 +55,7 @@ class AnswerViewController: UIViewController {
             let fvc = segue.destination as! FinishedViewController
             fvc.correct = correct
             fvc.total = (questions[subject]?.count)!
-        } else {
+        } else if (segue.identifier != "BackSegue") {
             let qvc = segue.destination as! QuestionViewController
             qvc.questions = questions
             qvc.answers = answers
