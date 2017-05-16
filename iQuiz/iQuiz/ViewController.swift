@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UITableViewController {
 
     var loaded: Bool = false
-    let url = "http://tednewardsandbox.site44.com/questions.json"
+    var url = "http://tednewardsandbox.site44.com/questions.json"
     
     var subjects: [String] = []
     var descriptions: [String] = []
@@ -85,9 +85,16 @@ class ViewController: UITableViewController {
     }
     
     @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: nil, message: "Settings go here", preferredStyle: UIAlertControllerStyle.actionSheet)
-        let OKAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(OKAction)
+        let alertController = UIAlertController(title: "Settings", message: "Enter a url to retrieve quizzes from", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .default)
+        alertController.addAction(cancel)
+        alertController.addTextField { (textField) in
+            textField.text = self.url
+        }
+        alertController.addAction(UIAlertAction(title: "Check Now", style: .default, handler: { (_) in
+            self.url = alertController.textFields![0].text!
+            self.getQuizzes()
+        }))
         self.present(alertController, animated: true)
     }
     
@@ -97,10 +104,7 @@ class ViewController: UITableViewController {
         let subject = subjects[selected[1]]
         vc.subject = subject 
         vc.questions = questions
-        vc.answers = answers 
-//        vc.questions = questions
-//        vc.options = options
-//        vc.answers = answers
+        vc.answers = answers
         vc.questionIndex = 0
     }
 
