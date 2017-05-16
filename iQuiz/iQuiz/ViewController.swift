@@ -16,9 +16,18 @@ class ViewController: UITableViewController {
     let icons: [UIImage] = [#imageLiteral(resourceName: "science"), #imageLiteral(resourceName: "marvel"), #imageLiteral(resourceName: "math")]
     var questions = [String: [(String, String)]]()
     var answers = [String: [[String]]]()
+    var dataLoaded: Bool = false
+    
+    var refreshController : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshController = UIRefreshControl()
+        refreshController.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshController.addTarget(self, action: Selector("refresh"), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshController)
+        
         DispatchQueue.global().async {
             self.getQuizzes()
             DispatchQueue.main.async {
@@ -28,7 +37,13 @@ class ViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    func refresh() {
+        getQuizzes()
+        refreshController?.endRefreshing()
+    }
+    
     func getQuizzes() {
+        self.subjects = []
         let urlString: URL = URL(string: url)!
         URLSession.shared.dataTask(with: urlString) { (data, response, error) in
             if error != nil {
@@ -69,7 +84,6 @@ class ViewController: UITableViewController {
                     let localStorage = UserDefaults.standard
                     localStorage.set(json, forKey: "savedJson")
                     localStorage.synchronize()
-                    print("saved")
                     
                     for section in json {
                         let title = section["title"]! as! String
@@ -88,6 +102,7 @@ class ViewController: UITableViewController {
                         self.subjects.append(title)
                         self.descriptions.append(section["desc"]! as! String)
                     }
+                    self.dataLoaded = true
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -109,11 +124,11 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        if self.dataLoaded {
         cell.textLabel?.text = subjects[indexPath.row]
         cell.detailTextLabel?.text = descriptions[indexPath.row]
         cell.imageView?.image = icons[indexPath.row]
-    
+        }
         return cell
     }
     
